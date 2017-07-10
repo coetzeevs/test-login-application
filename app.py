@@ -7,19 +7,19 @@ import os
 
 app = Flask(__name__)
 driver = 'postgresql+psycopg2://'
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['SECRET_KEY'] = 'top secret!'
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = \
-    driver \
-    + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] \
-    + '@' + os.environ['RDS_HOSTNAME'] + ':' + os.environ['RDS_PORT'] \
-    + '/' + os.environ['RDS_DB_NAME']
+    'SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://mydbinstance:Mini1300!@test-instance.ch1ktyvsreco.eu-west-1.rds.amazonaws.com:5432/test_instance'
+    # driver \
+    # + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] \
+    # + '@' + os.environ['RDS_HOSTNAME'] + ':' + os.environ['RDS_PORT'] \
+    # + '/' + os.environ['RDS_DB_NAME']
 
 # 'postgresql+psycopg2://mydbinstance:Mini1300!@test-instance.ch1ktyvsreco.eu-west-1.rds.amazonaws.com:5432/test_instance'
 app.config['OAUTH_CREDENTIALS'] = {
     'google': {
-        'id': os.environ['GOOGLE_ID'],
-        'secret': os.environ['GOOGLE_SECRET']
+        'id': '764200322748-e2g4i4qubpbr3k87j2chcekd9vvut44k.apps.googleusercontent.com',
+        'secret': 'wh1jWCZaJbMYYPGWk5U0eKzD'
     }
 }
 
@@ -88,4 +88,4 @@ def oauth_callback(provider):
 
 if __name__ == '__main__':
     db.create_all()
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=True)
